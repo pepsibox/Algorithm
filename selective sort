@@ -1,0 +1,18 @@
+#include<iostream>
+using namespace std;
+int N=100;
+int main(){
+	int a[N],num,i,j,temp;
+	cin>>num;
+	for(i=0;i<num;i++) cin>>a[i];
+	for(i=0;i<num;i++){
+		for(j=i;j<num;j++){
+		if(a[j]<a[i]){
+			temp=a[j];
+			a[j]=a[i];
+			a[i]=temp;
+		}
+	}	
+	}
+	for(i=0;i<num;i++) cout<<a[i]<<" ";
+}
