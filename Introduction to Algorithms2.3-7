@@ -1,3 +1,4 @@
+//设计一个算法，对于一个给定的包含n个整数的集合S和另一个给定的整数X，该算法可以在clip_image002时间内确定S中是否存在两个元素，使得它们的和恰为X。
 #include<iostream>
 using namespace std;
 int maxn=100;
