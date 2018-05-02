@@ -1,0 +1,39 @@
+#include <iostream>
+int findmaxcross(int a[],int left,int mid,int right);
+int findmax(int a[],int left,int right);
+using namespace std;
+int main(){
+	int max;
+	int a[16]={13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7};
+	max=findmax(a,0,15);
+	cout<<max;
+}
+
+int findmaxcross(int a[],int left,int mid,int right){
+	int sum,left_sum=0,right_sum=0,i;
+	sum=0;
+	for(i=mid;i>=left;i--){
+		sum=sum+a[i];
+		if(sum>left_sum) left_sum=sum;
+	}
+	sum=0;
+	for(i=mid+1;i<=right;i++){
+		sum=sum+a[i];
+		if(sum>right_sum) right_sum=sum;
+	}
+	return left_sum+right_sum;
+}
+
+int findmax(int a[],int left,int right){
+	int max_left,max_right,max_cross,mid;
+	if(left==right) return a[left];
+	else {
+		mid=(left+right)/2;
+		max_left=findmax(a,left,mid);
+		max_right=findmax(a,mid+1,right);
+		max_cross=findmaxcross(a,left,mid,right);
+		if((max_left>max_right)&&(max_left>max_cross)) return max_left;
+		else if((max_right>max_left)&&(max_right>max_cross)) return max_right;
+			else return max_cross;
+	}
+}
