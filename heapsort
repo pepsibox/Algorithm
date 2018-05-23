@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+int Num=1000;
+void maxheapify(int *a,int i,int n){
+	int l=2*i,r=2*i+1,largest;
+	if(l<n&&a[l]>a[i])  largest=l;
+		else largest=i;
+	if(r<n&&a[r]>a[largest])  largest=r;
+	if(i!=largest){
+		swap(a[i],a[largest]);
+		maxheapify(a,largest,n);
+	}
+}
+
+void build_maxheap(int *a,int n){
+	int i;
+	for(i=n/2;i>=0;i--)
+		maxheapify(a,i,n);
+}
+
+void heapsort(int *a,int n){
+	build_maxheap(a,n);
+	int i=n-1;
+	for(i;i>=1;i--){
+		swap(a[0],a[i]);
+		n=n-1;
+		maxheapify(a,0,n);
+	}
+}
+
+int main(){
+	int a[Num],n,i;
+	cin>>n;
+	for(i=0;i<n;i++) cin>>a[i];
+	heapsort(a,n);
+	for(i=0;i<n;i++) cout<<a[i]<<" ";
+}
